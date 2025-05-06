@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
@@ -15,7 +15,27 @@ namespace GroceryList
         {
             InitializeComponent();
             this.filePath = filePath;
-            groceryList = new List<Product>();  
+
+            if (File.Exists(filePath))
+            {
+                string json = File.ReadAllText(filePath);
+                groceryList = JsonSerializer.Deserialize<List<Product>>(json) ?? new List<Product>();
+            }
+            else
+            {
+                groceryList = new List<Product>();
+            }
+
+            foreach (var product in groceryList)
+            {
+                listBoxItems.Items.Add($"{product.Id}: {product.Name} - ₱{product.Price}");
+            }
+
+            if (groceryList.Count >= 5)
+            {
+                btnAddItem.Enabled = false;
+                MessageBox.Show("Maximum of 5 items already reached.");
+            }
         }
 
         private void btnAddItem_Click(object sender, EventArgs e)
