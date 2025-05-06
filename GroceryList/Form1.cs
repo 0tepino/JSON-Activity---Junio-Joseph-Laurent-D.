@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
@@ -25,12 +25,21 @@ namespace GroceryList
             }
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+        private async void btnAdd_Click(object sender, EventArgs e)
         {
+            List<Product> products = await JsonHelper.ReadJsonFromFileAsync(filePath);
+
+            if (products.Count >= 5)
+            {
+                MessageBox.Show("Maximum of 5 items already reached. You cannot add more.");
+                return;
+            }
+
             Form2 addForm = new Form2(filePath);
             addForm.FormClosed += (s, args) => LoadProductsAsync();
             addForm.ShowDialog();
         }
+
 
         private async void btnDelete_Click(object sender, EventArgs e)
         {
