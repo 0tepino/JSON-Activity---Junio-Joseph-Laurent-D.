@@ -1,4 +1,4 @@
-﻿namespace GroceryList
+namespace GroceryList
 {
     partial class Form1
     {
@@ -25,7 +25,9 @@
             btnDelete = new Button();
             label1 = new Label();
             SuspendLayout();
-
+            // 
+            // listBoxProducts
+            // 
             listBoxProducts.BackColor = SystemColors.Info;
             listBoxProducts.Font = new Font("STSong", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             listBoxProducts.FormattingEnabled = true;
@@ -33,7 +35,9 @@
             listBoxProducts.Name = "listBoxProducts";
             listBoxProducts.Size = new Size(407, 184);
             listBoxProducts.TabIndex = 0;
-
+            // 
+            // btnAdd
+            // 
             btnAdd.BackColor = SystemColors.ButtonFace;
             btnAdd.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold);
             btnAdd.ImageAlign = ContentAlignment.MiddleRight;
@@ -44,7 +48,9 @@
             btnAdd.Text = "Add Groceries";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
-
+            // 
+            // btnDelete
+            // 
             btnDelete.BackColor = SystemColors.ButtonFace;
             btnDelete.Font = new Font("Yu Gothic UI", 9F, FontStyle.Bold);
             btnDelete.ForeColor = SystemColors.ActiveCaptionText;
@@ -52,10 +58,12 @@
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(156, 40);
             btnDelete.TabIndex = 2;
-            btnDelete.Text = "Delete Selected";
+            btnDelete.Text = "Select and Delete";
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
-  
+            // 
+            // label1
+            // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 22.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(212, 48);
@@ -63,7 +71,9 @@
             label1.Size = new Size(270, 48);
             label1.TabIndex = 3;
             label1.Text = "Shopping List";
-    
+            // 
+            // Form1
+            // 
             BackColor = SystemColors.GradientActiveCaption;
             ClientSize = new Size(685, 420);
             Controls.Add(label1);
