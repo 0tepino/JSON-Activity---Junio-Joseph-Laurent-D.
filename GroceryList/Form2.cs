@@ -9,7 +9,7 @@ namespace GroceryList
     public partial class Form2 : Form
     {
         private readonly string filePath;
-        private List<Product> groceryList;  
+        private List<Product> groceryList;
 
         public Form2(string filePath)
         {
@@ -28,7 +28,7 @@ namespace GroceryList
 
             foreach (var product in groceryList)
             {
-                listBoxItems.Items.Add($"{product.Id}: {product.Name} - ₱{product.Price}");
+                listBoxItems.Items.Add($"{product.Id}: {product.Name}");
             }
 
             if (groceryList.Count >= 5)
@@ -40,39 +40,31 @@ namespace GroceryList
 
         private void btnAddItem_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtName.Text) || string.IsNullOrEmpty(txtPrice.Text))
+            if (string.IsNullOrWhiteSpace(txtName.Text))
             {
-                MessageBox.Show("Please provide both product name and price.");
+                MessageBox.Show("Please enter a product name.");
                 return;
             }
 
-            if (!double.TryParse(txtPrice.Text, out double price))
-            {
-                MessageBox.Show("Please enter a valid price.");
-                return;
-            }
+            int id = groceryList.Count + 1;
+            var product = new Product { Id = id, Name = txtName.Text };
 
-            int id = groceryList.Count + 1; 
-            var product = new Product { Id = id, Name = txtName.Text, Price = price };
-
-            listBoxItems.Items.Add($"{product.Id}: {product.Name} - ₱{product.Price}");
+            listBoxItems.Items.Add($"{product.Id}: {product.Name}");
             groceryList.Add(product);
 
             txtName.Clear();
-            txtPrice.Clear();
 
             if (groceryList.Count >= 5)
             {
                 MessageBox.Show("Maximum of 5 items allowed.");
-                btnAddItem.Enabled = false; 
+                btnAddItem.Enabled = false;
             }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
-
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
