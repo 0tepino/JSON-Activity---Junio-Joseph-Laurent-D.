@@ -21,7 +21,7 @@ namespace GroceryList
             listBoxProducts.Items.Clear();
             foreach (var product in products)
             {
-                listBoxProducts.Items.Add($"{product.Id}: {product.Name} - ₱{product.Price}");
+                listBoxProducts.Items.Add($"{product.Id}: {product.Name}");
             }
         }
 
