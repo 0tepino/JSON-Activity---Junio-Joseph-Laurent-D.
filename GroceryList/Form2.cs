@@ -10,6 +10,7 @@ namespace GroceryList
     {
         private readonly string filePath;
         private List<Product> groceryList;
+        private bool hasChanges = false; 
 
         public Form2(string filePath)
         {
@@ -53,6 +54,7 @@ namespace GroceryList
             groceryList.Add(product);
 
             txtName.Clear();
+            hasChanges = true;
 
             if (groceryList.Count >= 5)
             {
@@ -68,9 +70,9 @@ namespace GroceryList
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            if (groceryList.Count == 0)
+            if (!hasChanges)
             {
-                MessageBox.Show("No items to save.");
+                MessageBox.Show("Add new items.");
                 return;
             }
 
